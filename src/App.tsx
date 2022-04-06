@@ -3,8 +3,8 @@ import { Filters } from "./components/Filters";
 import { Select } from "./components/Select";
 import { Table } from "./components/Table";
 import { data } from "./data";
-import { formatDate, getTbody, getThead } from "./utils/formatter";
-
+import { formatDate, getTbody, getThead, groupBy } from "./utils/formatter";
+var _ = require('lodash');
 
 
 function App() {
@@ -23,7 +23,18 @@ function App() {
     setFilters(newFilters)
   }
 
-  useEffect(() => {},[filters])
+  useEffect(() => {
+    if(filters.length > 0){
+      const {thead,result} =  groupBy(data as [], filters)
+      setThead(thead)
+      setTbody(result)
+    } else {
+      setThead(getThead(data))
+      setTbody(getTbody(data))
+    }
+
+    
+  },[filters])
   
   return (
     <div className="text-center">

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IData } from "../../data";
+
 
 export interface ITbody {
     project:string
@@ -24,7 +24,7 @@ export const Table:FC<TableProps> = ({thead,tbody}) => {
     <tbody>
       {tbody &&
         tbody.map((row,index) => (
-          <tr key={index}>
+          <tr key={Math.floor(Math.random() * 1000)}>
             <th>{row.project}</th>
             <th>{row.employee}</th>
             <th>{row.date}</th>
