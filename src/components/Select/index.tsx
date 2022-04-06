@@ -1,13 +1,19 @@
 import { FC } from "react";
 
-export const Select:FC = () => {
-    return <select
+interface SelectProps {
+    onChange : (e:React.ChangeEvent<HTMLSelectElement>) =>  void
+}
+
+export const Select:FC<SelectProps> = ({onChange}) => {
+    return <>
+    <label htmlFor="">Seleziona raggrupamento</label>
+    <select
     className="form-select form-select-sm"
-    multiple
-    
+    onChange={onChange}
   >
-    <option value="">Open this select menu</option>
-    <option value="away">Away</option>
-    <option value="home">Home</option>
-  </select>
+       <option className="text-capitalaze" value="">Seleziona raggrupamento</option>
+    <option className="text-capitalaze" value="project">project</option>
+    <option value="employee">employe</option>
+    <option value="date">date</option>
+  </select></>
 }
