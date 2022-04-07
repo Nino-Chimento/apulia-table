@@ -31,7 +31,8 @@ const groupBy = (array:[], filters:string[]) => {
        result:array,
        thead: getThead(array)
    }
-   if(filters[0] === 'project') {
+
+   if(filters.length > 0) {
     const result = {};
     const response:ITbody[] = []
     array.forEach((item:IData) => {
@@ -64,7 +65,7 @@ const groupBy = (array:[], filters:string[]) => {
     
     
     
-    return {thead :filters.includes('employee')?['project','employee','hours']:['project','hours'],result:response } ;
+    return {thead :filters.includes('employee')?['employee','project','hours']:['project','hours'],result:response } ;
    }
   return {thead :[],result:[] }
 };

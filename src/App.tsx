@@ -44,7 +44,7 @@ function App() {
       <div className="mb-2 mt-3">
       <Filters removeFilter={(filter)=>removeFilter(filter)} filters={filters}/>
       </div>
-      <Table thead={thead} tbody={tbody} />
+      <Table filters={filters} thead={thead} tbody={tbody} />
     </div>
   );
 }
