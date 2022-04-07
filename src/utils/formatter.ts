@@ -26,24 +26,25 @@ return `${dd}-${mm}-${yyyy}` ;
 }
 
 export 
-const groupBy = (array:[], key:string[]) => {
-   if(key.length === 0) return {
+const groupBy = (array:[], filters:string[]) => {
+   if(filters.length === 0) return {
        result:array,
        thead: getThead(array)
    }
-   if(key[0] === 'project') {
+   if(filters[0] === 'project') {
     const result = {};
     const response:ITbody[] = []
     array.forEach((item:IData) => {
-        const keyGetter = (item:IData) => item.project.name
+        const keyGetter = (item:IData) => filters.includes('employee') ? item.employee.name : item.project.name
          const key = keyGetter(item);
         ;
          if (!(key in result)) {
              //@ts-ignore
              result[key] =  item.hours;
+            
              const obj:ITbody = {
-               
-                 project:key,
+                 employee:filters.includes('employee') ?item.employee.name : '',
+                 project:item.project.name,
                  hours: item.hours
              }
              response.push(obj)
@@ -51,8 +52,8 @@ const groupBy = (array:[], key:string[]) => {
              //@ts-ignore
             result[key] = result[key] + item.hours;
             const obj = {
-               
-                project:key,
+                employee:filters.includes('employee') ?item.employee.name : '',
+                project:item.project.name,
                  //@ts-ignore
                 hours: result[key] + item.hours
             }
@@ -63,7 +64,7 @@ const groupBy = (array:[], key:string[]) => {
     
     
     
-    return {thead :['project','hours'],result:response } ;
+    return {thead :filters.includes('employee')?['project','employee','hours']:['project','hours'],result:response } ;
    }
   return {thead :[],result:[] }
 };

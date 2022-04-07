@@ -14,6 +14,5 @@ export const Select:FC<SelectProps> = ({onChange}) => {
        <option className="text-capitalaze" value="">Seleziona raggrupamento</option>
     <option className="text-capitalaze" value="project">project</option>
     <option value="employee">employe</option>
-    <option value="date">date</option>
   </select></>
 }

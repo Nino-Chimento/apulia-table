@@ -17,14 +17,14 @@ export const Table:FC<TableProps> = ({thead,tbody}) => {
     return  <table className="table">
     <thead>
       <tr>
-          {thead.map(th =>  <th scope="col">{th}</th>)}
+          {thead.map((th,index) =>  <th key={index}  scope="col">{th}</th>)}
         
       </tr>
     </thead>
     <tbody>
       {tbody &&
         tbody.map((row,index) => (
-          <tr key={Math.floor(Math.random() * 1000)}>
+          <tr key={index}>
             <th>{row.project}</th>
             <th>{row.employee}</th>
             <th>{row.date}</th>
